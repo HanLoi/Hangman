@@ -17,65 +17,141 @@
 
     //random word
 
-    let a = Math.floor(Math.random()*10)
+    function randomword () {
+
+        let a = Math.floor(Math.random()*10)
   
-    var guessWord =listWord[a]["word"]
+        var guessWord =listWord[a]["word"]
 
-    var gWlenght= guessWord.split("").length
+        return guessWord
 
-    console.log(guessWord)
-    console.log(gWlenght)
-
-    // -------------------------------------
-    //acquérir l'input de lettre
-    let typeword =[];
-
-    let bout = document.querySelector(".alphabet")
-
-    let boutons = bout.querySelectorAll("button")
-
-   
-    boutons.forEach(btn =>
-        btn.addEventListener(
-            "click", () => {
-                let b = btn.innerHTML
-                typeword.push(b)
-        
-            }))
-    
-    console.log(typeword)
-
-    //-------------------------------------------------------
-    //affichage mot caché
-    function displayWord(c) {
-        let display = document.getElementById('displayWord');
-        
-        for (let i=0; i < c; i++) {
-        var score = document.createElement('span');
-        score.innerHTML="_";
-        score.style.fontSize='50px'
-
-        display.appendChild(score);}
     }
 
-    displayWord(gWlenght)
+    //changement des tirets les lettres du secretWord
 
-    //-------------------------------------------------
-    //live
+    function changeTiret(letter) {
+    
+        let indices = [];
+        let idx = secretWordSplit.indexOf(letter); // = l'index de la lettre se situant dans le mot
+    
+        while (idx != -1) { //-1 = si il ne trouve pas de valeur correspondante
+            indices.push(idx);
+            idx = secretWordSplit.indexOf(letter, idx +1);
+        }
+    
+        indices.forEach(indice => {
+            spanTable[secretWordSplit.indexOf(letter, indice)].innerHTML = letter;
+    
+        });
+    }
+    // function état du jeu
+    function stateGame() {
 
-    /*let live = gWlenght
+        
+        
+        let bool = true
+        
+        spanTable.forEach(element => {
+            if (spanTable.innerHTML == " _ "){
+                bool = false
+                console.log(bool)
+            }else {
+                console.log("test")
+    
+            }
+        })
+        if (bool == true){
+            console.log("win")
+        }
+        if ( live == 0){
+            console.log("game Over")
 
-    if (live == 0){
-        document.getElementById("endgame").innerHTML="GAME OVER"
-    }*/
 
- 
+        
+    }}
+
+
+
+    //variable
+    let secretWord = randomword();
+
+    let secretWordSplit = secretWord.split("");
+
+    let gWlenght= secretWord.split("").length;
+
+    let live = 7;
+
+    
+    //tiret html
+    
+    let display = document.getElementById('displayWord');
+            
+    for (let i=0; i < gWlenght; i++) {
+        var score = document.createElement('span');
+        score.innerHTML=" _ ";
+        score.style.fontSize='50px'
+            
+        display.appendChild(score);}
+
+    
+
+    
+    //acquérir l'input de lettre
+
+   
+
+    let bout = document.querySelector(".alphabet");
+        
+    let boutons = bout.querySelectorAll("button");
+    
+    let table = document.getElementById("displayWord");
+
+    let spanTable = table.querySelectorAll("span");
+
+        boutons.forEach(btn =>
+            btn.addEventListener(
+                "click", () => {
+                    let b = btn.innerHTML
+                    let h = b.toLowerCase()
+
+                    if (secretWordSplit.includes(h) == true){
+                        changeTiret(h)
+                    }else {
+                        live -= 1
+                    }
+                    console.log(secretWordSplit.includes(h));
+                    console.log(live)
+                    stateGame()
+                   
+                }));
+
+
+
+
+
+
+    console.log(live);
+    console.log(secretWord);
+    console.log(secretWordSplit);
+    console.log(gWlenght);
+
+    // -----------------------------------
+
+
+
+
+   /* var idx = guessWord.indexOf(typeword)
+    console.log (idx)*/
+
+    
+    //---------------------------------------------------
+
 
 
     //--------------------------------------------------------
     //afficher l'indice
 
-    document.getElementById("clue").addEventListener("click", () => {
+    /*document.getElementById("clue").addEventListener("click", () => {
 
         document.getElementById("displayclue").innerHTML=listWord[a]["clue"]
 
@@ -84,11 +160,11 @@
     //--------------------------------------
    // restart
    
-   document.getElementById("restart").addEventListener("click", () => { 
+   /*document.getElementById("restart").addEventListener("click", () => { 
         
          a = Math.floor(Math.random()*10)
         
 
      //live = 0
-   })
+   })*/
 
