@@ -1,29 +1,27 @@
 
 
     const listWord = [
-        {word :"procesor", clue:"fsdfsd"},
-        {word :"display", clue:"sdfsdfsd"},
-        {word :"mouse", clue:"fdsfdsf"},
-        {word :"keybord", clue:"sdfsdf"},
-        {word :"ram", clue:"fdsfdsf"},
-        {word :"linux", clue:"sdfsdfs"},
-        {word :"html", clue:"dsfsdf"},
-        {word :"motherboard", clue:"sdfsdfsd"},
-        {word :"foreach", clue:"sdfsdf"},
-        {word :"figure", clue:"fsdfdsf"},
+        {word :"procesor", clue:"a machine that processes something"},
+        {word :"display", clue:"put (something) in a prominent place in order that it may readily be seen."},
+        {word :"mouse", clue:"a small handheld device which is moved across a mat or flat surface to move the cursor on a computer screen."},
+        {word :"keybord", clue:"a panel of keys that operate a computer or typewriter."},
+        {word :"ram", clue:"a form of computer memory that can be read and changed in any order, typically used to store working data and machine code."},
+        {word :"linux", clue:"a family of open-source Unix-like operating systems"},
+        {word :"html", clue:"standard markup language for documents designed to be displayed in a web browser."},
+        {word :"motherboard", clue:"a printed circuit board containing the principal components of a computer or other device"},
+        {word :"foreach", clue:"method executes a provided function once for each array element."},
+        {word :"figure", clue:"represents self-contained content, potentially with an optional caption"},
     ];
 
 
 
     //random word
 
-    function randomword () {
+    function randomWord () {
 
         let a = Math.floor(Math.random()*10)
-  
-        var guessWord =listWord[a]["word"]
 
-        return guessWord
+        return a
 
     }
 
@@ -38,55 +36,53 @@
             indices.push(idx);
             idx = secretWordSplit.indexOf(letter, idx +1);
         }
-    
+        spanTable = document.getElementById("displayWord").querySelectorAll("span")
+
         indices.forEach(indice => {
             spanTable[secretWordSplit.indexOf(letter, indice)].innerHTML = letter;
     
         });
     }
     // function état du jeu
-    function stateGame() {
+    function stateGame(a) {
 
-        
-        
         let bool = true
         
         spanTable.forEach(element => {
-            if (spanTable.innerHTML == " _ "){
+            if (element.innerHTML == " _ "){
                 bool = false
-                console.log(bool)
-            }else {
-                console.log("test")
-    
             }
         })
-        if (bool == true){
-            console.log("win")
+        console.log(bool)
+        if (bool){
+            document.getElementById("endgame").innerHTML = " YOU WIN !!"
         }
-        if ( live == 0){
-            console.log("game Over")
+        if ( a == 0){
+            document.getElementById("endgame").innerHTML="TOO BAD ! YOU LOOSE !"
+            bout.style.display = "none";
 
-
-        
     }}
 
 
 
     //variable
-    let secretWord = randomword();
+    let randomNum= randomWord()
+
+    let secretWord = listWord[randomNum]["word"];
 
     let secretWordSplit = secretWord.split("");
 
-    let gWlenght= secretWord.split("").length;
-
     let live = 7;
 
-    
-    //tiret html
-    
+
+    document.getElementById("count").innerHTML="You still have "+ live + " live.";
+
     let display = document.getElementById('displayWord');
+
+    console.log("test")
+    console.log(secretWordSplit.length)
             
-    for (let i=0; i < gWlenght; i++) {
+    for (let i=0; i <secretWordSplit.length; i++) {
         var score = document.createElement('span');
         score.innerHTML=" _ ";
         score.style.fontSize='50px'
@@ -95,10 +91,34 @@
 
     
 
+
+    
+    //tiret html
+
+    function restartWord() {
+    
+    randomNum= randomWord()
+
+    secretWord = listWord[randomNum]["word"];
+
+    secretWordSplit = secretWord.split("");
+    
+    display.innerHTML = "";
+
+    console.log("test")
+            
+    for (let i=0; i <secretWordSplit.length; i++) {
+        score = document.createElement('span');
+        score.innerHTML=" _ ";
+        score.style.fontSize='50px'
+            
+        display.appendChild(score);}
+
+    }
+
     
     //acquérir l'input de lettre
 
-   
 
     let bout = document.querySelector(".alphabet");
         
@@ -119,9 +139,10 @@
                     }else {
                         live -= 1
                     }
-                    console.log(secretWordSplit.includes(h));
-                    console.log(live)
-                    stateGame()
+
+                    document.getElementById("count").innerHTML="You still have "+ live + " live.";
+                    
+                    stateGame(live)
                    
                 }));
 
@@ -129,42 +150,21 @@
 
 
 
+     document.getElementById("clue").addEventListener("click", () => {
 
-    console.log(live);
-    console.log(secretWord);
-    console.log(secretWordSplit);
-    console.log(gWlenght);
+            document.getElementById("displayclue").innerHTML=listWord[randomNum]["clue"]
+     })
 
-    // -----------------------------------
+     document.getElementById("restart").addEventListener("click", () => {
 
+       restartWord()
+       live = 7
+       document.getElementById("count").innerHTML="You still have "+ live + " live.";
+       bout.style.display = "";
+       document.getElementById("endgame").innerHTML = "KEEP GOING ! FIND THE WORD !"
 
-
-
-   /* var idx = guessWord.indexOf(typeword)
-    console.log (idx)*/
-
-    
-    //---------------------------------------------------
-
-
-
-    //--------------------------------------------------------
-    //afficher l'indice
-
-    /*document.getElementById("clue").addEventListener("click", () => {
-
-        document.getElementById("displayclue").innerHTML=listWord[a]["clue"]
 
      })
-    
-    //--------------------------------------
-   // restart
-   
-   /*document.getElementById("restart").addEventListener("click", () => { 
-        
-         a = Math.floor(Math.random()*10)
-        
 
-     //live = 0
-   })*/
+
 
