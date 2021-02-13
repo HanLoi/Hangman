@@ -13,8 +13,6 @@
         {word :"figure", clue:"represents self-contained content, potentially with an optional caption"},
     ];
 
-
-
     //random word
 
     function randomWord () {
@@ -76,10 +74,12 @@
 
     let displayLetter = []
 
+    var keybordSound1 = new Audio("asset\keybordSound-1.wav")
+
     document.getElementById("displayLetter").innerHTML = "You have already tape : "+ displayLetter
 
 
-    document.getElementById("count").innerHTML="You still have "+ live + " live.";
+    document.getElementById("count").innerHTML="ATTEMPT(S) LEFT :  "+ live;
 
     let display = document.getElementById('displayWord');
 
@@ -135,6 +135,7 @@
         boutons.forEach(btn =>
             btn.addEventListener(
                 "click", () => {
+                    keybordSound1.play()
                     let b = btn.innerHTML
                     let h = b.toLowerCase()
 
@@ -145,7 +146,7 @@
                         displayLetter.push(h)
                     }
 
-                    document.getElementById("count").innerHTML="You still have "+ live + " live.";
+                    document.getElementById("count").innerHTML="ATTEMPT(S) LEFT :  "+ live;
                     document.getElementById("displayLetter").innerHTML = "You have already tape : "+ displayLetter
                     
                     stateGame(live)
@@ -165,7 +166,7 @@
 
        restartWord()
        live = 7
-       document.getElementById("count").innerHTML="You still have "+ live + " live.";
+       document.getElementById("count").innerHTML="ATTEMPT(S) LEFT :  "+ live;
        bout.style.display = "";
        document.getElementById("endgame").innerHTML = "KEEP GOING ! FIND THE WORD !"
        document.getElementById("displayClue").innerHTML=" :  ***********************************"
