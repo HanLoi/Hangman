@@ -53,7 +53,7 @@
         })
         console.log(bool)
         if (bool){
-            document.getElementById("endgame").innerHTML = " ACCES .... !!"
+            document.getElementById("endgame").innerHTML = " ACCES AUTHORIZE !"
         }
         if ( a == 0){
             document.getElementById("endgame").innerHTML=" ACCES DENIED !"
@@ -168,7 +168,7 @@
        live = 7
        document.getElementById("count").innerHTML="ATTEMPT(S) LEFT :  "+ live;
        bout.style.display = "";
-       document.getElementById("endgame").innerHTML = "KEEP GOING ! FIND THE WORD !"
+       document.getElementById("endgame").innerHTML = "ENTER THE PASSWORD !"
        document.getElementById("displayClue").innerHTML=" :  ***********************************"
        displayLetter=[]
        document.getElementById("displayLetter").innerHTML = "You have already tape : "+ displayLetter
