@@ -49,16 +49,16 @@
         let bool = true
         
         spanTable.forEach(element => {
-            if (element.innerHTML == " _ "){
+            if (element.innerHTML == "_"){
                 bool = false
             }
         })
         console.log(bool)
         if (bool){
-            document.getElementById("endgame").innerHTML = " YOU WIN !!"
+            document.getElementById("endgame").innerHTML = " ACCES .... !!"
         }
         if ( a == 0){
-            document.getElementById("endgame").innerHTML="TOO BAD ! YOU LOOSE !"
+            document.getElementById("endgame").innerHTML=" ACCES DENIED !"
             bout.style.display = "none";
 
     }}
@@ -74,6 +74,10 @@
 
     let live = 7;
 
+    let displayLetter = []
+
+    document.getElementById("displayLetter").innerHTML = "You have already tape : "+ displayLetter
+
 
     document.getElementById("count").innerHTML="You still have "+ live + " live.";
 
@@ -84,7 +88,7 @@
             
     for (let i=0; i <secretWordSplit.length; i++) {
         var score = document.createElement('span');
-        score.innerHTML=" _ ";
+        score.innerHTML="_";
         score.style.fontSize='50px'
             
         display.appendChild(score);}
@@ -109,7 +113,7 @@
             
     for (let i=0; i <secretWordSplit.length; i++) {
         score = document.createElement('span');
-        score.innerHTML=" _ ";
+        score.innerHTML="_";
         score.style.fontSize='50px'
             
         display.appendChild(score);}
@@ -138,9 +142,11 @@
                         changeTiret(h)
                     }else {
                         live -= 1
+                        displayLetter.push(h)
                     }
 
                     document.getElementById("count").innerHTML="You still have "+ live + " live.";
+                    document.getElementById("displayLetter").innerHTML = "You have already tape : "+ displayLetter
                     
                     stateGame(live)
                    
@@ -152,7 +158,7 @@
 
      document.getElementById("clue").addEventListener("click", () => {
 
-            document.getElementById("displayclue").innerHTML=listWord[randomNum]["clue"]
+            document.getElementById("displayClue").innerHTML=" : " + listWord[randomNum]["clue"]
      })
 
      document.getElementById("restart").addEventListener("click", () => {
@@ -162,6 +168,9 @@
        document.getElementById("count").innerHTML="You still have "+ live + " live.";
        bout.style.display = "";
        document.getElementById("endgame").innerHTML = "KEEP GOING ! FIND THE WORD !"
+       document.getElementById("displayClue").innerHTML=" :  ***********************************"
+       displayLetter=[]
+       document.getElementById("displayLetter").innerHTML = "You have already tape : "+ displayLetter
 
 
      })
