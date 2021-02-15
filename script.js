@@ -135,7 +135,7 @@
         boutons.forEach(btn =>
             btn.addEventListener(
                 "click", () => {
-                    keybordSound1.play()
+                    /*keybordSound1.play()*/
                     let b = btn.innerHTML
                     let h = b.toLowerCase()
 
