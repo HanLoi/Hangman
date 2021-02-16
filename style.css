@@ -3,7 +3,7 @@
   src: url("../asset/monofonto.ttf");
 }
 body {
-  background-image: url("../asset/ecranpendu.webp");
+  background-image: url("../asset/ecranpendu.jpg");
   background-size: cover;
 }
 body main {
