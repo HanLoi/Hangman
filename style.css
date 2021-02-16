@@ -1,10 +1,9 @@
-@charset "UTF-8";
 @font-face {
   font-family: "monofonto";
-  src: url("..\assetkeybordSound-1.wav");
+  src: url("../asset/monofonto.ttf");
 }
 body {
-  background-image: url("...\assetìranpendu.jpg");
+  background-image: url("../asset/ecranpendu.JPG");
   background-size: cover;
 }
 body main {
