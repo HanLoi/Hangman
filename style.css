@@ -1,9 +1,9 @@
 @font-face {
   font-family: "monofonto";
-  src: url(asset/monofonto.ttf);
+  src: url("../asset/monofonto.ttf");
 }
 body {
-  background-image: url(asset/ecranpendu.webp);
+  background-image: url("../asset/ecranpendu.webp");
   background-size: cover;
 }
 body main {

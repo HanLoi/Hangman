@@ -74,7 +74,7 @@
 
     let displayLetter = []
 
-    var keybordSound1 = new Audio("asset\keybordSound-1.wav")
+    var keybordSound1 = new Audio("..\asset\keybordSound-1.wav")
 
     document.getElementById("displayLetter").innerHTML = "You have already tape : "+ displayLetter
 
