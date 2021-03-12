@@ -1,5 +1,5 @@
 
-
+    //Objet -> mots + indices
     const listWord = [
         {word :"procesor", clue:"a machine that processes something"},
         {word :"display", clue:"put (something) in a prominent place in order that it may readily be seen."},
@@ -18,7 +18,7 @@
         return Math.floor(Math.random()*10)
     }
 
-    //changement des tirets les lettres du secretWord
+    //changement des tirets en les lettres
     function changeTiret(letter) {
     
         let indices = [];
@@ -34,7 +34,7 @@
             spanTable[secretWordSplit.indexOf(letter, indice)].innerHTML = letter;
         });
     }
-    // function état du jeu
+    // fonction état du jeu
     function stateGame(a) {
 
         let bool = true;
@@ -83,7 +83,7 @@
     document.getElementById("count").innerHTML="ATTEMPT(S) LEFT :  "+ live;
     //création des première spans
     span()
-    //acquérir l'input de lettre
+    //acquérir l'input de lettre + vérification de l'état du jeu
     let table = document.getElementById("displayWord");
     let spanTable = table.querySelectorAll("span");
 
